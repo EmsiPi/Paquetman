@@ -6,10 +6,6 @@ public class Grille {
 
     private final Case[][] plateau = new Case[SIZE][SIZE];
 
-    private final int STARTX = 2;
-
-    private final int STARTY = 2;
-
     private int numBoatAlive;
 
     public Grille() {
@@ -23,7 +19,7 @@ public class Grille {
             }
         }
         BouleJaune bouleJaune = new BouleJaune();
-        plateau[STARTX][STARTY] = start;
+        plateau[bouleJaune.cooBoule.getI()][bouleJaune.cooBoule.getJ()].setMarque(Marque.YELLOWBALL);
     }
 
     public Case[][] getPlateau(){
