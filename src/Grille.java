@@ -2,11 +2,7 @@ public class Grille {
 
     public static final int SIZE = 6;
 
-    private final Case start = new Case();
-
     private final Case[][] plateau = new Case[SIZE][SIZE];
-
-    private int numBoatAlive;
 
     public Grille() {
         initPlateau();
