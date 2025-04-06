@@ -24,4 +24,6 @@ public class Joueur {
         this.setLife(valueLife);
     }
 
+    //reconnaissance de la commande -> fonction de deplacement choisie
+
 }

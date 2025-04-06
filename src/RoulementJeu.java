@@ -6,6 +6,8 @@ public class RoulementJeu {
 
         BouleJaune bouleJaune = new BouleJaune();
 
+        //fonction de déplacement
+
     }
 
 }

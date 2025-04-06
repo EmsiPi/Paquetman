@@ -41,6 +41,4 @@ public class Grille {
 
         return sb.toString();
     }
-
-
 }
