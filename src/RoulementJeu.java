@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class RoulementJeu {
 
     public static void lancementJeu(){
@@ -5,6 +7,8 @@ public class RoulementJeu {
         System.out.println(grille);
 
         BouleJaune bouleJaune = new BouleJaune();
+
+        ArrowKey.ArrowKey(bouleJaune);
 
         //fonction de déplacement
 

@@ -17,4 +17,12 @@ public class Case {
     public Marque getMarque() {
         return marque;
     }
+
+    public String toString() {
+        if(marque == null) {
+            return "[ ]";
+        }
+
+        return "[" + marque.getValue() + "]";
+    }
 }
