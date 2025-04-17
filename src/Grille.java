@@ -18,8 +18,16 @@ public class Grille {
         plateau[bouleJaune.cooBoule.getI()][bouleJaune.cooBoule.getJ()].setBouleJaune(bouleJaune);
     }
 
+    public void setSpecial(Case caz, Special special){
+        caz.setSpecial(special);
+    }
+
     public Case[][] getPlateau(){
         return this.plateau;
+    }
+
+    public int getSize(){
+        return SIZE;
     }
 
     public String toString() {

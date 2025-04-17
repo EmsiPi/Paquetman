@@ -1,5 +1,8 @@
+import java.util.Random;
+
 public class Case {
     Marque marque;
+    Special special;
     BouleJaune bouleJaune;
     Coo coo = new Coo();
 
@@ -11,8 +14,9 @@ public class Case {
         return coo;
     }
 
-    public void setMarque(Marque marque) {
-        this.marque = marque;
+    public void setSpecial(Special special){
+        this.special = special;
+        this.marque = special.marque;
     }
 
     public void setBouleJaune(BouleJaune bouleJaune){
@@ -34,5 +38,14 @@ public class Case {
         }
 
         return "[" + marque.getValue() + "]";
+    }
+
+    public Case randomCase(Grille grille){
+        Random random = new Random();
+        int i = random.nextInt(grille.getSize());
+        int j = random.nextInt(grille.getSize());
+
+        Case[][] plateau = grille.getPlateau();
+        return plateau[i][j];
     }
 }
