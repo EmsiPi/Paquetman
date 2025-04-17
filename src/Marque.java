@@ -1,5 +1,8 @@
 public enum Marque {
-    YELLOWBALL("I^I");
+    YELLOWBALL("I^I"),
+    CHERRIES("ù"),
+    TRAP("");
+
     private String value;
 
     Marque(String value) {

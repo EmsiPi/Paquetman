@@ -15,7 +15,7 @@ public class Grille {
             }
         }
         BouleJaune bouleJaune = new BouleJaune();
-        plateau[bouleJaune.cooBoule.getI()][bouleJaune.cooBoule.getJ()].setMarque(Marque.YELLOWBALL);
+        plateau[bouleJaune.cooBoule.getI()][bouleJaune.cooBoule.getJ()].setBouleJaune(bouleJaune);
     }
 
     public Case[][] getPlateau(){

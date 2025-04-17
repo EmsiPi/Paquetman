@@ -1,13 +1,21 @@
 import javax.swing.*;
+import javax.swing.border.Border;
+import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
 public class ArrowKey {
 
-    public ArrowKey(BouleJaune boulejaune){
+    public static void ArrowKey(BouleJaune bouleJaune, Grille grille) {
 
-        new KeyListener() {
+        JFrame frame = new JFrame();
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(400,400);
+        frame.setFocusable(true);
+
+        JPanel panel = new JPanel((new GridLayout(6,6)));
+        frame.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
 
@@ -16,25 +24,33 @@ public class ArrowKey {
             @Override
             public void keyPressed(KeyEvent e) {
                 int keyCode = e.getKeyCode();
-                switch(keyCode){
-                    case KeyEvent.VK_UP: Deplacement.up(boulejaune);
+                switch (keyCode) {
+                    case KeyEvent.VK_UP:
                         break;
-                    case KeyEvent.VK_DOWN: Deplacement.down(boulejaune);
+                    case KeyEvent.VK_DOWN:
                         break;
-                    case KeyEvent.VK_RIGHT: Deplacement.right(boulejaune);
+                    case KeyEvent.VK_RIGHT:
                         break;
-                    case KeyEvent.VK_LEFT: Deplacement.left(boulejaune);
+                    case KeyEvent.VK_LEFT:
                         break;
                 }
+                System.out.println(grille);
             }
 
             @Override
             public void keyReleased(KeyEvent e) {
 
             }
-        };
-    }
-    public static void ArrowKey(BouleJaune bouleJaune) {
-        new ArrowKey(bouleJaune);
+        });
+
+        Border blackline = BorderFactory.createLineBorder(Color.black,1);
+        for(int i = 0; i<36;i++){
+            JPanel ptest = new JPanel();
+            ptest.setBorder(blackline);
+            panel.add(ptest);
+        }
+        panel.setBorder(blackline);
+        frame.add(panel);
+        frame.setVisible(true);
     }
 }

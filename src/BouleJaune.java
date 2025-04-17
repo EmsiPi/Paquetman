@@ -1,14 +1,11 @@
 public class BouleJaune {
 
     Coo cooBoule = new Coo();
-    String marqueBoule = "YellowBall :D";
+    Marque marque;
 
     public BouleJaune() {
         this.cooBoule.initCoo();
-    }
-
-    public String getMarqueBoule() {
-        return marqueBoule;
+        this.marque = Marque.YELLOWBALL;
     }
 
     public void setCooBoule(Coo cooBoule) {

@@ -1,16 +1,15 @@
-import java.util.Scanner;
-
 public class Joueur {
 
-    private int life;
+    private int point;
+    private int LIFE = 4;
     private String pseudo;
 
-    public void setLife(int life) {
-        this.life = life;
+    public void setLIFE(int LIFE) {
+        this.LIFE = LIFE;
     }
 
-    public int getLife() {
-        return life;
+    public int getLIFE() {
+        return LIFE;
     }
 
     public String getPseudo() {
@@ -22,8 +21,8 @@ public class Joueur {
     }
 
     public void ouille (){
-        var valueLife = this.life - 1;
-        this.setLife(valueLife);
+        var valueLife = this.LIFE - 1;
+        this.setLIFE(valueLife);
     }
 
     //reconnaissance de la commande avec switch/case -> fonction de deplacement choisie
