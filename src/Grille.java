@@ -16,8 +16,16 @@ public class Grille {
         }
         BouleJaune bouleJaune = new BouleJaune();
         plateau[bouleJaune.cooBoule.getI()][bouleJaune.cooBoule.getJ()].setBouleJaune(bouleJaune);
-    }
 
+        Special cerise1 = new Cerises();
+        setRandomCaseSpecial(cerise1);
+        Special trap1 = new Pieges();
+        setRandomCaseSpecial(trap1);
+    }
+    public void setRandomCaseSpecial (Special special){
+        Case caz = Case.randomEmptyCase(this);
+        setSpecial(plateau[caz.getCoo().getI()][caz.getCoo().getJ()],special);
+    }
     public void setSpecial(Case caz, Special special){
         caz.setSpecial(special);
     }

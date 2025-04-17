@@ -40,12 +40,34 @@ public class Case {
         return "[" + marque.getValue() + "]";
     }
 
-    public Case randomCase(Grille grille){
+    public static Case randomEmptyCase(Grille grille){
         Random random = new Random();
-        int i = random.nextInt(grille.getSize());
-        int j = random.nextInt(grille.getSize());
+        Case caz = new Case();
+        Coo coo = caz.getCoo();
 
+        while(true){
+            caz = randomCase(grille);
+            if(checkEmptyCase(grille.getPlateau()[caz.getCoo().getI()][caz.getCoo().getJ()])){
+                return caz;
+            }
+        }
+    }
+
+    public static Case randomCase(Grille grille){
+        Random random = new Random();
+        Case caz = new Case();
         Case[][] plateau = grille.getPlateau();
-        return plateau[i][j];
+        Coo coo = caz.getCoo();
+
+        coo.setI(random.nextInt(grille.getSize()));
+        coo.setJ(random.nextInt(grille.getSize()));
+
+        caz.setCoo(coo);
+
+        return caz;
+    }
+
+    public static boolean checkEmptyCase(Case caz){
+        return (caz.marque == null);
     }
 }

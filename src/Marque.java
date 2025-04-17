@@ -1,7 +1,7 @@
 public enum Marque {
     YELLOWBALL("I^I"),
     CHERRIES("ù"),
-    TRAP("");
+    TRAP("x");
 
     private String value;
 
