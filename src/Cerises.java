@@ -1,7 +1,8 @@
-public class Cerises extends Special {
+public class Cerises extends Special implements ContenuCase {
 
-    public Cerises() {
-        this.marque = Marque.CHERRIES;
+    @Override
+    public Marque getMarque() {
+        return Marque.CHERRY;
     }
 
 }

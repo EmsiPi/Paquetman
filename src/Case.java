@@ -1,9 +1,10 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Case {
-    Marque marque;
-    Special special;
-    BouleJaune bouleJaune;
+    List<ContenuCase> contenuCase = new ArrayList<>();
+
     Coo coo = new Coo();
 
     public void setCoo(Coo coo) {
@@ -14,36 +15,24 @@ public class Case {
         return coo;
     }
 
-    public void setSpecial(Special special){
-        this.special = special;
-        this.marque = special.marque;
+    public void addContenuCase(ContenuCase content){
+        this.contenuCase.add(content);
     }
 
-    public void setBouleJaune(BouleJaune bouleJaune){
-        this.bouleJaune = bouleJaune;
-        this.marque = bouleJaune.marque;
-    }
-
-    public void removeBouleJaune(){
-        this.bouleJaune = null;
-    }
-
-    public Marque getMarque() {
-        return marque;
+    public void removeContenuCase(ContenuCase content){
+        this.contenuCase.remove(content);
     }
 
     public String toString() {
-        if(marque == null) {
+        if(contenuCase == null) {
             return "[ ]";
         }
 
-        return "[" + marque.getValue() + "]";
+        return "[" + contenuCase.getFirst().getMarque() + "]";
     }
 
     public static Case randomEmptyCase(Grille grille){
-        Random random = new Random();
-        Case caz = new Case();
-        Coo coo = caz.getCoo();
+        Case caz;
 
         while(true){
             caz = randomCase(grille);
@@ -56,7 +45,6 @@ public class Case {
     public static Case randomCase(Grille grille){
         Random random = new Random();
         Case caz = new Case();
-        Case[][] plateau = grille.getPlateau();
         Coo coo = caz.getCoo();
 
         coo.setI(random.nextInt(grille.getSize()));

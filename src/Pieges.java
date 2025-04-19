@@ -1,6 +1,8 @@
-public class Pieges extends Special {
+public class Pieges extends Special implements ContenuCase {
 
-    public Pieges() {
-        this.marque = Marque.TRAP;
+    @Override
+    public Marque getMarque() {
+        return Marque.TRAP;
     }
+
 }

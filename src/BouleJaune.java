@@ -1,11 +1,9 @@
-public class BouleJaune {
+public class BouleJaune implements ContenuCase {
 
     Coo cooBoule = new Coo();
-    Marque marque;
 
     public BouleJaune() {
         this.cooBoule.initCoo();
-        this.marque = Marque.YELLOWBALL;
     }
 
     public void setCooBoule(Coo cooBoule) {
@@ -16,4 +14,8 @@ public class BouleJaune {
         return cooBoule;
     }
 
+    @Override
+    public Marque getMarque() {
+        return Marque.YELLOWBALL;
+    }
 }

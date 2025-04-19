@@ -5,7 +5,6 @@ public class RoulementJeu {
     public static void lancementJeu(){
         Grille grille= new Grille();
         Joueur joueur = new Joueur();
-        BouleJaune bouleJaune = new BouleJaune();
 
         System.out.println("Quel est ton pseudo ? ");
         Scanner scanner = new Scanner(System.in);
@@ -14,6 +13,12 @@ public class RoulementJeu {
 
         System.out.println("Tu peux commencer à bouger ! Prend toutes les cerises, attention aux pièges.");
         System.out.println(grille);
+
+        while (joueur.getLIFE()!=0){
+            var zqsd = scanner.nextLine();
+            Deplacement.selectDeplacement(zqsd, grille);
+            System.out.println(grille);
+        }
 
         //fonction de déplacement
 
