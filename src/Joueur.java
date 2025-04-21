@@ -1,15 +1,26 @@
 public class Joueur {
 
-    private int point;
-    private int LIFE = 4;
+    private int pointCerise;
+    private final int VIEMAX = 2;
+    private int life = VIEMAX;
     private String pseudo;
 
-    public void setLIFE(int LIFE) {
-        this.LIFE = LIFE;
+    public void setLife(int life) {
+        this.life = life;
     }
 
-    public int getLIFE() {
-        return LIFE;
+    public void resetLife() {this.life = VIEMAX;}
+
+    public int getLife() {
+        return life;
+    }
+
+    public void setPointCerise(int pointCerise) {
+        this.pointCerise = pointCerise;
+    }
+
+    public int getPointCerise() {
+        return pointCerise;
     }
 
     public String getPseudo() {
@@ -20,11 +31,13 @@ public class Joueur {
         this.pseudo = pseudo;
     }
 
-    public void ouille (){
-        var valueLife = this.LIFE - 1;
-        this.setLIFE(valueLife);
+    public static void ouille(Joueur joueur){
+        joueur.life--;
     }
 
+    public static void miom (Joueur joueur){
+        joueur.pointCerise++;
+    }
     //reconnaissance de la commande avec switch/case -> fonction de deplacement choisie
 
 }

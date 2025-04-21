@@ -4,6 +4,7 @@ import java.util.Random;
 
 public class Case {
     List<ContenuCase> contenuCase = new ArrayList<>();
+    List<Special> listeSpecial = new ArrayList<>();
 
     Coo coo = new Coo();
 
@@ -23,12 +24,22 @@ public class Case {
         this.contenuCase.remove(content);
     }
 
-    public String toString() {
-        if(contenuCase.isEmpty()) {
-            return "[ ]";
-        }
+    public void addListeSpecial(Special special){
+        this.listeSpecial.add(special);
+    }
 
-        return "[" + contenuCase.getLast().getMarque().getValue() + "]";
+    public void removeListeSpecial(Special special){
+        this.listeSpecial.remove(special);
+    }
+
+    public String toString() {
+        if(!contenuCase.isEmpty()) {
+            return "[" + contenuCase.getLast().getMarque().getValue() + "]";
+        }
+        if(!listeSpecial.isEmpty()) {
+            return "[" + listeSpecial.getLast().getMarque().getValue() + "]";
+        }
+        return "[ ]";
     }
 
     public static Case randomEmptyCase(Grille grille){
@@ -58,4 +69,5 @@ public class Case {
     public static boolean checkEmptyCase(Case caz){
         return (caz.contenuCase.isEmpty());
     }
+
 }

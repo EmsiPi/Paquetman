@@ -5,11 +5,11 @@ public class Deplacement {
         try {
             DeplacementCheck.verifRight(grille);
         } catch (DeplacementException e) {
-            System.out.println(grille);
             return;
         }
         grille.removeBouleJaune();
         grille.bouleJaune.cooBoule.j++;
+        grille.resetBouleCoo();
 
     }
 
@@ -21,6 +21,7 @@ public class Deplacement {
         }
         grille.removeBouleJaune();
         grille.bouleJaune.cooBoule.j--;
+        grille.resetBouleCoo();
     }
 
     public static void up(Grille grille){
@@ -31,6 +32,7 @@ public class Deplacement {
         }
         grille.removeBouleJaune();
         grille.bouleJaune.cooBoule.i--;;
+        grille.resetBouleCoo();
     }
 
     public static void down(Grille grille){
@@ -41,6 +43,7 @@ public class Deplacement {
         }
         grille.removeBouleJaune();
         grille.bouleJaune.cooBoule.i++;
+        grille.resetBouleCoo();
     }
 
     public static void selectDeplacement (String zqsd, Grille grille){
@@ -49,19 +52,15 @@ public class Deplacement {
 
             case "z":
                 up(grille);
-                grille.resetBouleCoo();
                 break;
             case "q":
                 left(grille);
-                grille.resetBouleCoo();
                 break;
             case "s":
                 down(grille);
-                grille.resetBouleCoo();
                 break;
             case "d":
                 right(grille);
-                grille.resetBouleCoo();
                 break;
             default:
                 System.out.println("Choix incorrect");

@@ -18,19 +18,18 @@ public class Grille {
         }
         plateau[this.bouleJaune.cooBoule.getI()][this.bouleJaune.cooBoule.getJ()].addContenuCase(bouleJaune);
 
-        ContenuCase cerise1 = new Cerises();
+        Special cerise1 = new Cerises();
         setRandomCaseSpecial(cerise1);
-        ContenuCase trap1 = new Pieges();
+        Special trap1 = new Pieges();
         setRandomCaseSpecial(trap1);
     }
 
-    public void setRandomCaseSpecial (ContenuCase special){
+    public void setRandomCaseSpecial (Special special){
         Case caz = Case.randomEmptyCase(this);
         setSpecial(plateau[caz.getCoo().getI()][caz.getCoo().getJ()],special);
     }
 
     public void resetBouleCoo () {
-        System.out.println(this.bouleJaune.cooBoule.getI());
         plateau[this.bouleJaune.cooBoule.getI()][this.bouleJaune.cooBoule.getJ()].addContenuCase(bouleJaune);
     }
 
@@ -39,8 +38,8 @@ public class Grille {
         plateau[bouleJaune.cooBoule.getI()][bouleJaune.cooBoule.getJ()].removeContenuCase(this.bouleJaune);
     }
 
-    public void setSpecial(Case caz, ContenuCase special){
-        caz.addContenuCase(special);
+    public void setSpecial(Case caz, Special special){
+        caz.addListeSpecial(special);
     }
 
     public Case[][] getPlateau(){

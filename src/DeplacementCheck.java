@@ -1,7 +1,7 @@
 public class DeplacementCheck {
     public static void verifUp (Grille grille) {
         int i = grille.bouleJaune.getCooBoule().i;
-        if (i -1 <= 0){
+        if (i -1 < 0){
             throw new DeplacementException();
         }
     }
