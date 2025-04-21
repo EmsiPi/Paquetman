@@ -5,4 +5,9 @@ public class Pieges extends Special implements ContenuCase {
         return Marque.TRAP;
     }
 
+    @Override
+    public String getValue() {
+        return this.getMarque().getValue();
+    }
+
 }

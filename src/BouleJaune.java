@@ -18,4 +18,9 @@ public class BouleJaune implements ContenuCase {
     public Marque getMarque() {
         return Marque.YELLOWBALL;
     }
+
+    @Override
+    public String getValue() {
+        return this.getMarque().getValue();
+    }
 }

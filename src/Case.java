@@ -24,11 +24,11 @@ public class Case {
     }
 
     public String toString() {
-        if(contenuCase == null) {
+        if(contenuCase.isEmpty()) {
             return "[ ]";
         }
 
-        return "[" + contenuCase.getFirst().getMarque() + "]";
+        return "[" + contenuCase.getLast().getMarque().getValue() + "]";
     }
 
     public static Case randomEmptyCase(Grille grille){
@@ -56,6 +56,6 @@ public class Case {
     }
 
     public static boolean checkEmptyCase(Case caz){
-        return (caz.marque == null);
+        return (caz.contenuCase.isEmpty());
     }
 }

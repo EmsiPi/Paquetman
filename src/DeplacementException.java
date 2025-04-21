@@ -1,5 +1,8 @@
 public class DeplacementException extends RuntimeException {
-  public DeplacementException(String message) {
-    super(message);
+
+  private static final String MESSAGE = "déplacement interdit !";
+  public DeplacementException() {
+    super(MESSAGE);
   }
+
 }

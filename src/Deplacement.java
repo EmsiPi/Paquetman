@@ -1,44 +1,66 @@
 public class Deplacement {
 
-    public static void right(BouleJaune bouleJaune){
-        bouleJaune.cooBoule.j++;
+
+    public static void right(Grille grille) {
+        try {
+            DeplacementCheck.verifRight(grille);
+        } catch (DeplacementException e) {
+            System.out.println(grille);
+            return;
+        }
+        grille.removeBouleJaune();
+        grille.bouleJaune.cooBoule.j++;
+
     }
 
-    public static void left(BouleJaune bouleJaune){
-        bouleJaune.cooBoule.j--;
+    public static void left(Grille grille){
+        try {
+            DeplacementCheck.verifLeft(grille);
+        } catch (DeplacementException e) {
+            return;
+        }
+        grille.removeBouleJaune();
+        grille.bouleJaune.cooBoule.j--;
     }
 
-    public static void up(BouleJaune bouleJaune){
-        bouleJaune.cooBoule.i++;
+    public static void up(Grille grille){
+        try {
+            DeplacementCheck.verifUp(grille);
+        } catch (DeplacementException e) {
+            return;
+        }
+        grille.removeBouleJaune();
+        grille.bouleJaune.cooBoule.i--;;
     }
 
-    public static void down(BouleJaune bouleJaune){
-        bouleJaune.cooBoule.i--;
+    public static void down(Grille grille){
+        try {
+            DeplacementCheck.verifDown(grille);
+        } catch (DeplacementException e) {
+            return;
+        }
+        grille.removeBouleJaune();
+        grille.bouleJaune.cooBoule.i++;
     }
 
     public static void selectDeplacement (String zqsd, Grille grille){
 
-        Case[][] plateau = grille.getPlateau();
-        BouleJaune bouleJaune = grille.getBouleJaune();
-        plateau[bouleJaune.cooBoule.getI()][bouleJaune.cooBoule.getJ()].removeBouleJaune();
-        System.out.println(grille);
-
         switch(zqsd) {
 
             case "z":
-                up(grille.getBouleJaune());
+                up(grille);
                 grille.resetBouleCoo();
                 break;
             case "q":
-                left(grille.getBouleJaune());
+                left(grille);
                 grille.resetBouleCoo();
                 break;
             case "s":
-                down(grille.getBouleJaune());
+                down(grille);
                 grille.resetBouleCoo();
                 break;
             case "d":
-                right(grille.getBouleJaune());
+                right(grille);
                 grille.resetBouleCoo();
                 break;
             default:

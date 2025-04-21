@@ -5,4 +5,9 @@ public class Cerises extends Special implements ContenuCase {
         return Marque.CHERRY;
     }
 
+    @Override
+    public String getValue() {
+        return this.getMarque().getValue();
+    }
+
 }
