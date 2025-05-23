@@ -28,8 +28,8 @@ public class Case {
         this.listeSpecial.add(special);
     }
 
-    public void removeListeSpecial(Special special){
-        this.listeSpecial.remove(special);
+    public void removeListeSpecial(){
+        this.listeSpecial.removeFirst();
     }
 
     public String toString() {
@@ -54,12 +54,11 @@ public class Case {
     }
 
     public static Case randomCase(Grille grille){
-        Random random = new Random();
         Case caz = new Case();
         Coo coo = caz.getCoo();
 
-        coo.setI(random.nextInt(grille.getSize()));
-        coo.setJ(random.nextInt(grille.getSize()));
+        coo.setI(grille.getSeed().nextInt(grille.getSize()));
+        coo.setJ(grille.getSeed().nextInt(grille.getSize()));
 
         caz.setCoo(coo);
 

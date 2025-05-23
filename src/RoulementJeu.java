@@ -5,7 +5,8 @@ import java.util.Scanner;
 public class RoulementJeu {
 
     public static void lancementJeu(){
-        Grille grille= new Grille();
+        long seed = Grille.chooseSeed();
+        Grille grille= new Grille(seed);
 
         Joueur joueur = new Joueur();
 
@@ -23,10 +24,11 @@ public class RoulementJeu {
 
         while (Objects.equals(reponse, "oui")) {
             joueur.resetLife();
-            gameplay(joueur, grille);
+            Grille grilleB = new Grille(seed);
+
+            gameplay(joueur, grilleB);
 
             System.out.println("Bien essayé ! Souhaites tu recommencer (répondre par oui ou par non) ? J'espère que tu as bien mémorisé la carte");
-
             reponse = scanner.nextLine();
         }
 
@@ -41,7 +43,7 @@ public class RoulementJeu {
 
     public static void gameplay(Joueur joueur, Grille grille ) {
         System.out.println(grille);
-        while (joueur.getLife()!=0){
+        while (joueur.getLife()!=0) {
 
             Scanner scanner = new Scanner(System.in);
             var zqsd = scanner.nextLine();
@@ -54,6 +56,7 @@ public class RoulementJeu {
 
             if (!cazCheck.listeSpecial.isEmpty()) {
                 triggerSpecials(cazCheck.listeSpecial, joueur);
+                cazCheck.removeListeSpecial();
             }
 
             System.out.println(grille);
