@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class Case {
     List<ContenuCase> contenuCase = new ArrayList<>();
@@ -57,8 +56,8 @@ public class Case {
         Case caz = new Case();
         Coo coo = caz.getCoo();
 
-        coo.setI(grille.getSeed().nextInt(grille.getSize()));
-        coo.setJ(grille.getSeed().nextInt(grille.getSize()));
+        coo.setI(grille.getRandom().nextInt(grille.getSize()));
+        coo.setJ(grille.getRandom().nextInt(grille.getSize()));
 
         caz.setCoo(coo);
 

@@ -5,32 +5,21 @@ import java.util.Scanner;
 public class RoulementJeu {
 
     public static void lancementJeu(){
-        long seed = Grille.chooseSeed();
-        Grille grille= new Grille(seed);
 
         Joueur joueur = new Joueur();
+        joueur.setLevel(1);
 
         System.out.println("Quel est ton pseudo ? ");
         Scanner scanner = new Scanner(System.in);
         var pseudo = scanner.nextLine();
         joueur.setPseudo(pseudo);
 
+        long seed = Grille.randomSeed();
+        Grille grille= new Grille(seed, joueur);
+
         System.out.println("Tu peux commencer à bouger ! Prend toutes les cerises, attention aux pièges.");
 
         gameplay(joueur, grille);
-
-        System.out.println("Bien essayé ! Souhaites tu recommencer (répondre par oui ou par non) ? J'espère que tu as bien mémorisé la carte");
-        var reponse = scanner.nextLine();
-
-        while (Objects.equals(reponse, "oui")) {
-            joueur.resetLife();
-            Grille grilleB = new Grille(seed);
-
-            gameplay(joueur, grilleB);
-
-            System.out.println("Bien essayé ! Souhaites tu recommencer (répondre par oui ou par non) ? J'espère que tu as bien mémorisé la carte");
-            reponse = scanner.nextLine();
-        }
 
 
     }
@@ -43,9 +32,10 @@ public class RoulementJeu {
 
     public static void gameplay(Joueur joueur, Grille grille ) {
         System.out.println(grille);
-        while (joueur.getLife()!=0) {
+        Scanner scanner;
+        scanner = new Scanner(System.in);
+        while (joueur.getLife() != 0) {
 
-            Scanner scanner = new Scanner(System.in);
             var zqsd = scanner.nextLine();
 
             Deplacement.selectDeplacement(zqsd, grille);
@@ -59,7 +49,49 @@ public class RoulementJeu {
                 cazCheck.removeListeSpecial();
             }
 
+            if (joueur.getPointCerise() == Grille.getEffectifCerises()) {
+                System.out.println(grille);
+                nextLevelOrNot(joueur, grille);
+                break;
+            }
+
             System.out.println(grille);
+        }
+
+        restartOrNot(joueur,grille);
+
+    }
+
+    public static void nextLevelOrNot (Joueur joueur, Grille grille) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("tu as mangé toutes les cerises ! Souhaites tu passer au niveau suivant ? (Un piège en +) ");
+        var reponse = scanner.nextLine();
+
+        if (Objects.equals(reponse, "oui")) {
+            joueur.nextLevel();
+            joueur.resetPointCerise();
+
+            Grille grilleB = new Grille(grille.getSeed(), joueur);
+
+            gameplay(joueur, grilleB);
+
+        }
+        System.out.println("Tu as pu aller jusqu'au niveau : " + joueur.getLevel());
+    }
+
+    public static void restartOrNot (Joueur joueur, Grille grille) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Bien essayé ! Souhaites tu recommencer (répondre par oui ou par non) ? J'espère que tu as bien mémorisé la carte");
+        var reponse = scanner.nextLine();
+
+        while (Objects.equals(reponse, "oui")) {
+            joueur.resetLife();
+            Grille grilleB = new Grille(grille.getSeed(), joueur);
+
+            gameplay(joueur, grilleB);
+
+            System.out.println("Bien essayé ! Souhaites tu recommencer (répondre par oui ou par non) ? J'espère que tu as bien mémorisé la carte");
+            reponse = scanner.nextLine();
         }
     }
 

@@ -3,7 +3,17 @@ public class Joueur {
     private int pointCerise;
     private final int VIEMAX = 2;
     private int life = VIEMAX;
+    private int level;
+
     private String pseudo;
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
 
     public void setLife(int life) {
         this.life = life;
@@ -38,6 +48,8 @@ public class Joueur {
     public static void miom (Joueur joueur){
         joueur.pointCerise++;
     }
-    //reconnaissance de la commande avec switch/case -> fonction de deplacement choisie
+    public  void nextLevel (){this.level++;}
+
+public void resetPointCerise() {this.pointCerise = 0;}
 
 }
