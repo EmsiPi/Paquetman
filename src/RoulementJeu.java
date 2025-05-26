@@ -1,5 +1,4 @@
 import java.util.List;
-import java.util.Objects;
 import java.util.Scanner;
 
 public class RoulementJeu {
@@ -34,64 +33,71 @@ public class RoulementJeu {
         System.out.println(grille);
         Scanner scanner;
         scanner = new Scanner(System.in);
-        while (joueur.getLife() != 0) {
+        do {
+            do {
+                var zqsd = scanner.nextLine();
 
-            var zqsd = scanner.nextLine();
+                Deplacement.selectDeplacement(zqsd, grille);
 
-            Deplacement.selectDeplacement(zqsd, grille);
+                Case[][] plateau = grille.getPlateau();
+                BouleJaune bouleJaune = grille.getBouleJaune();
+                Case cazCheck = plateau[bouleJaune.getCooBoule().i][bouleJaune.getCooBoule().j];
 
-            Case[][] plateau = grille.getPlateau();
-            BouleJaune bouleJaune = grille.getBouleJaune();
-            Case cazCheck = plateau[bouleJaune.getCooBoule().i][bouleJaune.getCooBoule().j];
+                if (!cazCheck.listeSpecial.isEmpty()) {
+                    triggerSpecials(cazCheck.listeSpecial, joueur);
+                    cazCheck.removeListeSpecial();
+                }
 
-            if (!cazCheck.listeSpecial.isEmpty()) {
-                triggerSpecials(cazCheck.listeSpecial, joueur);
-                cazCheck.removeListeSpecial();
-            }
+                if (joueur.getPointCerise() == 2) {
+                    break;
+                }
 
-            if (joueur.getPointCerise() == Grille.getEffectifCerises()) {
+                if (joueur.getLife()==0) {
+                    restartOrNot(joueur, grille);
+                }
+
                 System.out.println(grille);
-                nextLevelOrNot(joueur, grille);
-                break;
-            }
+            } while (joueur.getLife()!=0);
 
-            System.out.println(grille);
-        }
-
-        restartOrNot(joueur,grille);
+        } while (nextLevelOrNot(joueur, grille));
 
     }
 
-    public static void nextLevelOrNot (Joueur joueur, Grille grille) {
+//    do {
+//         do {gameplay
+//                    point cerise ok break;
+//                while restart;
+//    } while (nextLevelOrNot)
+//        restart or not
+
+    public static boolean nextLevelOrNot (Joueur joueur, Grille grille) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("tu as mangé toutes les cerises ! Souhaites tu passer au niveau suivant ? (Un piège en +) ");
+        System.out.println("Tu as mangé toutes les cerises ! Souhaites tu passer au niveau suivant ? (Un piège en +) ");
         var reponse = scanner.nextLine();
 
-        if (Objects.equals(reponse, "oui")) {
+        if ("oui".equalsIgnoreCase(reponse)) {
             joueur.nextLevel();
             joueur.resetPointCerise();
 
             Grille grilleB = new Grille(grille.getSeed(), joueur);
 
-            gameplay(joueur, grilleB);
+            return true;
 
         }
         System.out.println("Tu as pu aller jusqu'au niveau : " + joueur.getLevel());
+        return false;
     }
 
-    public static void restartOrNot (Joueur joueur, Grille grille) {
+    public static void restartOrNot(Joueur joueur, Grille grille) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Bien essayé ! Souhaites tu recommencer (répondre par oui ou par non) ? J'espère que tu as bien mémorisé la carte");
         var reponse = scanner.nextLine();
 
-        while (Objects.equals(reponse, "oui")) {
+        if ("oui".equalsIgnoreCase(reponse)) {
             joueur.resetLife();
-            Grille grilleB = new Grille(grille.getSeed(), joueur);
+            joueur.resetPointCerise();
+            grille = new Grille(grille.getSeed(), joueur);
 
-            gameplay(joueur, grilleB);
-
-            System.out.println("Bien essayé ! Souhaites tu recommencer (répondre par oui ou par non) ? J'espère que tu as bien mémorisé la carte");
-            reponse = scanner.nextLine();
         }
     }
 
