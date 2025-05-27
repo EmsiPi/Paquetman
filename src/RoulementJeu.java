@@ -33,33 +33,34 @@ public class RoulementJeu {
         System.out.println(grille);
         Scanner scanner;
         scanner = new Scanner(System.in);
-        do {
-            do {
-                var zqsd = scanner.nextLine();
+        boolean ok = true;
+        while (ok) {
 
-                Deplacement.selectDeplacement(zqsd, grille);
+            var zqsd = scanner.nextLine();
 
-                Case[][] plateau = grille.getPlateau();
-                BouleJaune bouleJaune = grille.getBouleJaune();
-                Case cazCheck = plateau[bouleJaune.getCooBoule().i][bouleJaune.getCooBoule().j];
+            Deplacement.selectDeplacement(zqsd, grille);
 
-                if (!cazCheck.listeSpecial.isEmpty()) {
-                    triggerSpecials(cazCheck.listeSpecial, joueur);
+            Case[][] plateau = grille.getPlateau();
+            BouleJaune bouleJaune = grille.getBouleJaune();
+            Case cazCheck = plateau[bouleJaune.getCooBoule().i][bouleJaune.getCooBoule().j];
+
+            if (!cazCheck.listeSpecial.isEmpty()) {
+                triggerSpecials(cazCheck.listeSpecial, joueur);
                     cazCheck.removeListeSpecial();
-                }
+            }
 
-                if (joueur.getPointCerise() == 2) {
-                    break;
-                }
+            System.out.println(grille);
 
-                if (joueur.getLife()==0) {
-                    restartOrNot(joueur, grille);
-                }
+            if (joueur.getLife() == 0) {
+                ok = restartOrNot(joueur, grille);
+                grille = new Grille(grille.getSeed(), joueur);
+            }
 
-                System.out.println(grille);
-            } while (joueur.getLife()!=0);
-
-        } while (nextLevelOrNot(joueur, grille));
+            if (joueur.getPointCerise() == 2) {
+                ok = nextLevelOrNot(joueur, grille);
+                grille = new Grille(grille.getSeed(), joueur);
+            }
+        }
 
     }
 
@@ -78,17 +79,13 @@ public class RoulementJeu {
         if ("oui".equalsIgnoreCase(reponse)) {
             joueur.nextLevel();
             joueur.resetPointCerise();
-
-            Grille grilleB = new Grille(grille.getSeed(), joueur);
-
             return true;
-
         }
         System.out.println("Tu as pu aller jusqu'au niveau : " + joueur.getLevel());
         return false;
     }
 
-    public static void restartOrNot(Joueur joueur, Grille grille) {
+    public static boolean restartOrNot(Joueur joueur, Grille grille) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Bien essayé ! Souhaites tu recommencer (répondre par oui ou par non) ? J'espère que tu as bien mémorisé la carte");
         var reponse = scanner.nextLine();
@@ -96,9 +93,10 @@ public class RoulementJeu {
         if ("oui".equalsIgnoreCase(reponse)) {
             joueur.resetLife();
             joueur.resetPointCerise();
-            grille = new Grille(grille.getSeed(), joueur);
-
+            return true;
         }
+        System.out.println("Fin de partie ! A la prochaine ;)");
+        return false;
     }
 
 }
