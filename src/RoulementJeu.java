@@ -6,7 +6,6 @@ public class RoulementJeu {
     public static void lancementJeu(){
 
         Joueur joueur = new Joueur();
-        joueur.setLevel(1);
 
         System.out.println("Quel est ton pseudo ? ");
         Scanner scanner = new Scanner(System.in);
@@ -30,10 +29,10 @@ public class RoulementJeu {
     }
 
     public static void gameplay(Joueur joueur, Grille grille ) {
-        System.out.println(grille);
         Scanner scanner;
         scanner = new Scanner(System.in);
         boolean ok = true;
+        System.out.println(grille);
         while (ok) {
 
             var zqsd = scanner.nextLine();
@@ -53,23 +52,24 @@ public class RoulementJeu {
 
             if (joueur.getLife() == 0) {
                 ok = restartOrNot(joueur, grille);
-                grille = new Grille(grille.getSeed(), joueur);
+                if (ok) {
+                    grille = new Grille(grille.getSeed(), joueur);
+                    System.out.println(grille);
+                }
             }
 
             if (joueur.getPointCerise() == 2) {
                 ok = nextLevelOrNot(joueur, grille);
-                grille = new Grille(grille.getSeed(), joueur);
+                if(ok) {
+                    grille = new Grille(grille.getSeed(), joueur);
+                    System.out.println(grille);
+                }
             }
+
+            System.out.println(ok);
         }
 
     }
-
-//    do {
-//         do {gameplay
-//                    point cerise ok break;
-//                while restart;
-//    } while (nextLevelOrNot)
-//        restart or not
 
     public static boolean nextLevelOrNot (Joueur joueur, Grille grille) {
         Scanner scanner = new Scanner(System.in);

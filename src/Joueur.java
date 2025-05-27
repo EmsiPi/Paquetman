@@ -3,7 +3,7 @@ public class Joueur {
     private int pointCerise;
     private final int VIEMAX = 2;
     private int life = VIEMAX;
-    private int level;
+    private int level = 1;
 
     private String pseudo;
 
