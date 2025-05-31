@@ -73,7 +73,7 @@ public class Grille {
 
     public void setRandomCaseSpecial (Special special) {
         Case caz = Case.randomEmptyCase(this);
-        setSpecial(plateau[caz.getCoo().getI()][caz.getCoo().getJ()],special);
+        setSpecial(caz,special);
     }
 
     public void resetBouleCoo () {

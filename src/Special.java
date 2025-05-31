@@ -2,7 +2,7 @@ public interface Special {
 
     public Marque getMarque();
 
-    public void setMarque ();
+    void setMarque(Marque marque);
 
     public void triggerSpecial(Joueur joueur);
 

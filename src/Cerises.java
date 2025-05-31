@@ -1,12 +1,18 @@
 public class Cerises implements Special {
 
+    Marque marque;
+
+    public Cerises() {
+        this.marque = Marque.CHERRY;
+    }
+
     public Marque getMarque() {
-        return Marque.CHERRY;
+        return this.marque;
     }
 
     @Override
-    public void setMarque() {
-
+    public void setMarque(Marque marque) {
+        this.marque = marque;
     }
 
     @Override

@@ -1,12 +1,18 @@
 public class Pieges implements Special {
 
+    Marque marque;
+
+    public Pieges() {
+        this.marque = Marque.TRAPHIDE;
+    }
+
     public Marque getMarque() {
-        return Marque.TRAP;
+        return this.marque;
     }
 
     @Override
-    public void setMarque() {
-
+    public void setMarque(Marque marque) {
+        this.marque = marque;
     }
 
     @Override

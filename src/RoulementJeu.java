@@ -13,7 +13,7 @@ public class RoulementJeu {
         joueur.setPseudo(pseudo);
 
         long seed = Grille.randomSeed();
-        Grille grille= new Grille(seed, joueur);
+        Grille grille = new Grille(seed, joueur);
 
         System.out.println("Tu peux commencer à bouger ! Prend toutes les cerises, attention aux pièges.");
 
@@ -65,10 +65,7 @@ public class RoulementJeu {
                     System.out.println(grille);
                 }
             }
-
-            System.out.println(ok);
         }
-
     }
 
     public static boolean nextLevelOrNot (Joueur joueur, Grille grille) {
@@ -95,6 +92,7 @@ public class RoulementJeu {
             joueur.resetPointCerise();
             return true;
         }
+        System.out.println("Tu as pu aller jusqu'au niveau : " + joueur.getLevel())
         System.out.println("Fin de partie ! A la prochaine ;)");
         return false;
     }

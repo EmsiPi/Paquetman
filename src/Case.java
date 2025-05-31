@@ -46,26 +46,22 @@ public class Case {
 
         while(true){
             caz = randomCase(grille);
-            if(checkEmptyCase(grille.getPlateau()[caz.getCoo().getI()][caz.getCoo().getJ()])){
+            if(checkEmptyCase(caz)){
                 return caz;
             }
         }
     }
 
     public static Case randomCase(Grille grille){
-        Case caz = new Case();
-        Coo coo = caz.getCoo();
 
-        coo.setI(grille.getRandom().nextInt(grille.getSize()));
-        coo.setJ(grille.getRandom().nextInt(grille.getSize()));
+        int i = grille.getRandom().nextInt(grille.getSize());
+        int j = grille.getRandom().nextInt(grille.getSize());
 
-        caz.setCoo(coo);
-
-        return caz;
+        return grille.getPlateau()[i][j];
     }
 
     public static boolean checkEmptyCase(Case caz){
-        return (caz.contenuCase.isEmpty());
+        return (caz.contenuCase.isEmpty() && caz.listeSpecial.isEmpty());
     }
 
 }
