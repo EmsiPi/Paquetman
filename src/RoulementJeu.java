@@ -92,7 +92,7 @@ public class RoulementJeu {
             joueur.resetPointCerise();
             return true;
         }
-        System.out.println("Tu as pu aller jusqu'au niveau : " + joueur.getLevel())
+        System.out.println("Tu as pu aller jusqu'au niveau : " + joueur.getLevel());
         System.out.println("Fin de partie ! A la prochaine ;)");
         return false;
     }
