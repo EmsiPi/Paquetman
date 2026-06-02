@@ -15,7 +15,7 @@ public class RoulementJeu {
         long seed = Grille.randomSeed();
         Grille grille = new Grille(seed, joueur);
 
-        System.out.println("Tu peux commencer à bouger ! Prend toutes les cerises, attention aux pièges.");
+        System.out.println("Tu peux commencer à bouger ! \n Prend toutes les cerises, attention aux pièges.");
 
         gameplay(joueur, grille);
 
